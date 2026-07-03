@@ -71,8 +71,7 @@
                 "size": 400,
                 "mSize": 0.05
             }
-        },
-        "io.jans.casa.authn.main.ad.isci": {}
+        }
     },
     "name": "casa"
 }
