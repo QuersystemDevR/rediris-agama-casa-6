@@ -6,7 +6,6 @@ policies = inutil.policies
 methods = inutil.methods
 obj = { captureLocation: inutil.needsCaptureLocation }
 inutil = null
-// Variante AD: las credenciales se validan contra Active Directory (conf.ad)
 reinutil = Call io.jans.casa.authn.AdUserAuthnUtil#new policies conf.ad
 Repeat 3 times max
      userData = RRF "main.ftlh" obj
@@ -19,11 +18,6 @@ When reinutil.validCredentials is false
 uid = reinutil.uid
 // user has 2FA turned off?
 When reinutil.user2FAOn is false
-     Finish uid
-// IP-based 2FA bypass
-ipTrusted = Call io.jans.casa.authn.IpChecker#isTrusted conf.trusted_networks uid
-When ipTrusted is true
-     Log "@info 2FA omitido: IP del cliente en red confiable para usuario %" uid
      Finish uid
 reinutil.jsonLocation = userData.location
 reinutil.jsonDevice = userData.device
